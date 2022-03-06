@@ -14,6 +14,10 @@ describe("Pokemon API Tests", () => {
 				},
 			}));
 	});
+	it("returns 404 for incorrect urls", async () => {
+		const res = await request(app).get("/pokemon");
+		expect(res.status).toBe(404);
+	});
 	it("returns 404 when pokemon is not found", async () => {
 		jest.spyOn(pokemonAPI, "get").mockImplementationOnce(() => {
 			return Promise.reject({
