@@ -8,9 +8,9 @@ const getPokemon = async (req, res) => {
 
 		const pokemon = {
 			name: data.name,
-			description: data.flavor_text_entries.find(
-				(item) => item.language.name === "en"
-			)?.flavor_text,
+			description: data.flavor_text_entries
+				.find((item) => item.language.name === "en")
+				?.flavor_text?.replace(/(\n|\f)/g, " "),
 			habitat: data.habitat.name,
 			isLegendary: data.is_legendary,
 		};
@@ -33,9 +33,9 @@ const getPokemonTranslated = async (req, res) => {
 			`/pokemon-species/${req.params.name}`
 		);
 
-		const description = data.flavor_text_entries.find(
-			(item) => item.language.name === "en"
-		)?.flavor_text;
+		const description = data.flavor_text_entries
+			.find((item) => item.language.name === "en")
+			?.flavor_text?.replace(/(\n|\f)/g, " ");
 
 		const translationType =
 			data.is_legendary || data.habitat.name === "cave"
