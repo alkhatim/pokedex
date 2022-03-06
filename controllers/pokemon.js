@@ -1,8 +1,6 @@
 const { pokemonAPI, translationsAPI } = require("../utils/API");
 
 const getPokemon = async (req, res) => {
-	if (!req.params.name) return res.status(400).send("INVALID_POKEMON_NAME");
-
 	try {
 		const { data } = await pokemonAPI.get(
 			`/pokemon-species/${req.params.name}`
@@ -30,8 +28,6 @@ const getPokemon = async (req, res) => {
 };
 
 const getPokemonTranslated = async (req, res) => {
-	if (!req.params.name) return res.status(400).send("INVALID_POKEMON_NAME");
-
 	try {
 		const { data } = await pokemonAPI.get(
 			`/pokemon-species/${req.params.name}`
